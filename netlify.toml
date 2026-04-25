@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--no-audit --no-fund"
+
+# The Netlify Next.js runtime is auto-installed for Next 13+ App Router.
+# It handles routing, image optimization, and serverless function generation.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Lightweight security headers (proportional to a static portfolio).
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    X-Frame-Options = "DENY"
